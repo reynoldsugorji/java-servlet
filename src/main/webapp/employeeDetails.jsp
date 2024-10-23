@@ -3,41 +3,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Employee List</title>
+    <title>Employee Details</title>
 </head>
 <body>
-    <h2>Employee List</h2>
-    <table border="1" cellpadding="5" cellspacing="0">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Username</th>
-                <th>Address</th>
-                <th>Contact</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <c:forEach var="employee" items="${listEmployee}">
+    <h2>Employee Details</h2>
+
+    <c:choose>
+        <c:when test="${not empty employee}">
+            <table border="1" cellpadding="5" cellspacing="0">
                 <tr>
+                    <th>ID</th>
                     <td>${employee.id}</td>
-                    <td>${employee.firstName}</td>
-                    <td>${employee.lastName}</td>
-                    <td>${employee.username}</td>
-                    <td>${employee.address}</td>
-                    <td>${employee.contact}</td>
-                    <td>
-                        <a href="edit?id=${employee.id}">Edit</a> |
-                        <a href="delete?id=${employee.id}" onclick="return confirm('Are you sure you want to delete this employee?');">Delete</a>
-                    </td>
                 </tr>
-            </c:forEach>
-        </tbody>
-    </table>
+                <tr>
+                    <th>First Name</th>
+                    <td>${employee.firstName}</td>
+                </tr>
+                <tr>
+                    <th>Last Name</th>
+                    <td>${employee.lastName}</td>
+                </tr>
+                <tr>
+                    <th>Username</th>
+                    <td>${employee.username}</td>
+                </tr>
+                <tr>
+                    <th>Address</th>
+                    <td>${employee.address}</td>
+                </tr>
+                <tr>
+                    <th>Contact</th>
+                    <td>${employee.contact}</td>
+                </tr>
+            </table>
+        </c:when>
+        <c:otherwise>
+            <p>${errorMessage}</p>
+        </c:otherwise>
+    </c:choose>
 
     <br/>
-    <a href="registerEmployee.jsp">Add New Employee</a>
+    <a href="employee?action=list">Back to Employee List</a>
+     <a href="employee?action=edit&id=${employee.id}">Update</a>
+     <a href="employee?action=delete&id=${employee.id}">Delete</a>
 </body>
 </html>

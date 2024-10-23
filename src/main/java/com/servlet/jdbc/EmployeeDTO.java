@@ -27,6 +27,16 @@ public class EmployeeDTO {
         this.contact = contact;
     }
 
+    public EmployeeDTO(int id, String firstName, String lastName, String password, String username, String address, String contact) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+        this.address = address;
+        this.contact = contact;
+    }
+
     public int getId() {
         return id;
     }
@@ -81,5 +91,18 @@ public class EmployeeDTO {
 
     public void setContact(String contact) {
         this.contact = contact;
+    }
+
+    @Override
+    public String toString() {
+        return "EmployeeDTO{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", address='" + address + '\'' +
+                ", contact='" + contact + '\'' +
+                '}';
     }
 }
